@@ -12,19 +12,6 @@ export class RegistrationComponent implements OnInit {
   
   form: FormGroup;
 
-  firstname = new FormControl('', [Validators.required, forbiddenNameValidator(/Kenneth/i)]);
-  lastname = new FormControl('', [Validators.required]);
-  spouseFirstname = new FormControl('');
-  spouseLastname = new FormControl('');
-  phoneNumber1 = new FormControl('', [Validators.required,
-     Validators.maxLength(3)]);
-  phoneNumber2 = new FormControl('', [Validators.required, 
-    Validators.maxLength(3)]);
-  phoneNumber3 = new FormControl('', [Validators.required, 
-    Validators.maxLength(4)]);
-  email = new FormControl('', [Validators.required, 
-      Validators.email]);
-
   attendingData = [
     { id: 1, name: 'Fridat night cook out' }, // 0
     { id: 2, name: 'Saturday breakfast' }, // 1
@@ -40,23 +27,23 @@ export class RegistrationComponent implements OnInit {
     this.attendingData.forEach(() => this.attendingFormArray.push(new FormControl(false)));
   }
   
-  attending = new FormArray([]);
-  orderDVD = new FormControl('', []);
-  comments = new FormControl('', []);
-
   constructor(fb: FormBuilder) {
     this.form = fb.group({
-      firstname: this.firstname,
-      lastname: this.lastname,
-      spouseFirstname : this.spouseFirstname,
-      spouseLastname : this.spouseLastname,
-      phoneNumber1 : this.phoneNumber1,
-      phoneNumber2 : this.phoneNumber2,
-      phoneNumber3 : this.phoneNumber3,
-      email: this.email,
-      attending: this.attending,
-      orderDVD: this.orderDVD,
-      comments: this.comments
+      firstname: fb.control('', [Validators.required, forbiddenNameValidator(/Kenneth/i)]),
+      lastname: fb.control('', [Validators.required]),
+      spouseFirstname : fb.control('', []),
+      spouseLastname : fb.control('', []),
+      phoneNumber1 : fb.control('', [Validators.required,
+        Validators.maxLength(3)]),
+      phoneNumber2 : fb.control('', [Validators.required,
+        Validators.maxLength(3)]),
+      phoneNumber3 : fb.control('', [Validators.required,
+        Validators.maxLength(4)]),
+      email: fb.control('', [Validators.required, 
+        Validators.email]),
+      attending: new FormArray([]),
+      orderDVD: fb.control('', []),
+      comments: fb.control('', [])
     });
     this.addAttendingCheckboxes();
    }
