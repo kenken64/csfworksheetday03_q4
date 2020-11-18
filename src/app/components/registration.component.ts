@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { forbiddenNameValidator } from '../directives/forbidden.name.directive';
+import { Registration } from '../models/register';
 
 @Component({
   selector: 'app-registration',
@@ -65,6 +66,17 @@ export class RegistrationComponent implements OnInit {
 
   processForm(){
     console.log(this.form.value);
+    let register = new Registration(
+      this.form.value.firstname,
+      this.form.value.lastname,
+      this.form.value.phoneNumber1,
+      this.form.value.phoneNumber2,
+      this.form.value.phoneNumber3,
+      this.form.value.email,
+      this.form.value.attending,
+    )
+    console.log(register);
+    // call httpclient pass the register
   }
 
 }

@@ -6,7 +6,7 @@ export class Registration {
         public phoneNumber2: number,
         public phoneNumber3: number,
         public email: string,
-        public eventAttending: number[],
+        public eventAttending: boolean[],
         public spouseFirstName?: string, 
         public spouseLastName?: string, 
         public orderDVD?: string,
