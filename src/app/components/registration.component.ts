@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { forbiddenNameValidator } from '../directives/forbidden.name.directive';
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +11,7 @@ export class RegistrationComponent implements OnInit {
   
   form: FormGroup;
 
-  firstname = new FormControl('', [Validators.required]);
+  firstname = new FormControl('', [Validators.required, forbiddenNameValidator(/Kenneth/i)]);
   lastname = new FormControl('', [Validators.required]);
   spouseFirstname = new FormControl('');
   spouseLastname = new FormControl('');
