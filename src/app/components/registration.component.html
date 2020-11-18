@@ -1,0 +1,65 @@
+<div class="container">
+    <h1>High School Reunion Registration Form</h1> 
+    <form [formGroup]="form" (ngSubmit)="processForm()">
+        <div class="form-group">
+            <label for="firstname">
+                First Name
+            </label>
+            <input type="text" id="firstname" formControlName="firstname">
+            <label for="lastname">
+                Last Name
+            </label>
+            <input type="text" id="lastname" formControlName="lastname">
+        </div>
+        <div class="form-group">
+            <label for="spouseFirstname">
+                Spouse First Name
+            </label>
+            <input type="text" id="spouseFirstname" formControlName="spouseFirstname">
+            <label for="spouseLastname">
+                Spouse Last Name
+            </label>
+            <input type="text" id="spouseLastname" formControlName="spouseLastname">
+        </div>
+        <div class="form-group">
+            <label>
+                Phone Number
+            </label>
+            <input type="text" id="phoneNumber1" size="3" formControlName="phoneNumber1">
+            <input type="text" id="phoneNumber2" size="3" formControlName="phoneNumber2">
+            <input type="text" id="phoneNumber3" size="4" formControlName="phoneNumber3">
+        </div>
+
+        <div class="form-group">
+            <label for="email">
+                Email
+            </label>
+            <input type="email" id="email" formControlName="email">
+        </div>
+        <div class="form-group">
+            <label>
+                Which events will you be attending?
+            </label>
+            <label formArrayName="attending" *ngFor="let attend of attendingFormArray.controls; let i = index">
+                <input type="checkbox" [formControlName]="i">
+                {{attendingData[i].name}}
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Would you like to pre-order a reunion DVD ($19.95)?
+                <input type="radio" value="yes" formControlName="orderDVD">Yes
+                <input type="radio" value="no" formControlName="orderDVD">No
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Comments & Questions
+            </label>
+            <textarea name="comments" id="" cols="30" rows="10" formControlName="comments"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
+    </form>
+</div>
